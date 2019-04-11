@@ -1,76 +1,30 @@
 import React, { Component } from 'react';
-import { Text, View, ScrollView, FlatList, Modal, StyleSheet, Button, Alert, PanResponder, Share } from 'react-native';
+import { Text, View, ScrollView, FlatList, Modal, StyleSheet, Button, Alert, Share } from 'react-native';
 import { Card, Icon, Rating, Input } from 'react-native-elements';
-import { DISHES } from '../shared/dishes';
+import { JOBLISTS } from '../shared/joblists';
 import { COMMENTS } from '../shared/comments';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
 import { postComment } from '../redux/ActionCreators';
-import { postFavorite } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
+import { Permissions, Notifications } from 'expo';
 
+//console.log("DIshdetail is Called : " + this.props.uId); 
 const mapDispatchToProps = dispatch => ({
-  postComment: (dishId, author, rating, comment) =>
-  dispatch(postComment(dishId, author, rating, comment)),
-  postFavorite: (dishId) => dispatch(postFavorite(dishId))
+  postComment: (uId, author, rating, comment) =>
+  dispatch(postComment(uId, author, rating, comment))  
 });
 
 const mapStateToProps = state => {
   return {
-    dishes: state.dishes,
-    comments: state.comments,
-    favorites: state.favorites
+    joblists: state.joblist,
+    comments: state.comments    
   };
 };
 
 function RenderDish(props) {
-  const dish = props.dish;    
-
-  handleViewRef = ref => this.view = ref;
-
-  const recognizeDrag = ({ moveX, moveY, dx, dy }) => {
-    if ( dx < -200 )
-        return true;
-    else
-        return false;
-  }
-  const recognizeComment = ({ moveX, moveY, dx, dy }) => {
-    if ( dx > 200 )
-        return true;
-    else
-        return false;
-  }
-
-const panResponder = PanResponder.create({
-    onStartShouldSetPanResponder: (e, gestureState) => {
-        return true;
-    },
-
-    onPanResponderGrant: () => {
-      this.view.rubberBand(1000)
-        .then(endState => console.log(endState.finished ? 'finished' : 'canceled'))
-    },
-
-    onPanResponderEnd: (e, gestureState) => {
-        console.log("pan responder end", gestureState);
-        if (recognizeDrag(gestureState))
-            Alert.alert(
-                'Add Favorite',
-                'Are you sure you wish to add ' + dish.name + ' to favorite?',
-                [
-                {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                {text: 'OK', onPress: () => {props.favorite ? console.log('Already favorite') : props.onPress()}},
-                ],
-                { cancelable: false }
-            );
-        else if(recognizeComment(gestureState))
-        {
-          props.toggleModal();                   
-        }
-        return true;
-    }
-})
-
+  const joblist = props.joblist;    
+  
 const shareDish = (title, message, url) => {
   Share.share({
       title: title,
@@ -81,24 +35,16 @@ const shareDish = (title, message, url) => {
   })
 }
 
-if (dish != null) {
+if (joblist != null) {
     return(
-        <Animatable.View animation="fadeInDown" duration={2000} delay={1000}
-          ref={this.handleViewRef}
-        {...panResponder.panHandlers}>
-        <Card featuredTitle={dish.name} image={{ uri: baseUrl + dish.image }}>
-        <Text style={{ margin: 10 }}>{dish.description}</Text>
-        <View style= {styles.formRow}>
-          <Icon          
-            raised
-            reverse
-            name={props.favorite ? 'heart' : 'heart-o'}
-            type="font-awesome"
-            color="#f50"
-            onPress={() =>
-              props.favorite ? console.log("Already favorite") : props.onPress()
-            }            
-          />
+        <ScrollView>
+        <Card featuredTitle={joblist.name} image={{ uri: baseUrl + joblist.image }}>
+        <Text style={{ margin: 10 }}>Job description: {joblist.description}</Text>
+        <Text style={{ margin: 10 }}>Date/Time : {joblist.start}</Text>
+        <Text style={{ margin: 10 }}>Hours : {joblist.hours}</Text>
+        <Text style={{ margin: 10 }}>Hourly Wage: {joblist.price}</Text>
+        <Text style={{ margin: 10 }}>Address: {joblist.address}</Text>
+        <View style= {styles.formRow}>          
           <Icon
             raised            
             reverse
@@ -113,11 +59,25 @@ if (dish != null) {
             name='share'
             type="font-awesome"
             color="#51D2AA"
-            onPress={() => shareDish(dish.name, dish.description, baseUrl + dish.image)}
+            onPress={() => shareDish(joblist.name, joblist.description, baseUrl + joblist.image)}
           />
+          <Icon
+            raised            
+            reverse
+            name={'envelope'}
+            type="font-awesome"
+            color="#512DA8"
+            onPress={() => props.handlePush()}
+          />          
         </View>
+        
+          <Button style={styles.formButton} 
+            color="#512DA8"
+            title="Apply"
+           />
+        
         </Card>
-      </Animatable.View>            
+      </ScrollView>            
     );
   } else {
     return <View />;
@@ -161,30 +121,75 @@ class Dishdetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dishes: DISHES,
+      joblists: JOBLISTS,
       comments: COMMENTS,
-      showModal: false,
-      favorites: [1,2],
+      showModal: false,      
       feedback: "",
       author: "",
       rating: 3
-    };
-  }
-
-  markFavorite(dishId) {
-  this.props.postFavorite(dishId);
-}
+    };  
+  }  
 
   static navigationOptions = {
-    title: 'Dish Details',
+    title: 'Job Details',
   };
+  
+  handlePush() {
+        this.presentLocalNotification("test");
+/*         this.registerForPushNotificationsAsync(); */
+  }
+/*   async registerForPushNotificationsAsync() {
+    console.log("registerForPushNotificationsAsync() has started");
+    const aa = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+    console.log("statu + ts " + JSON.stringify(aa));
+    try {
+      let token = await Notifications.getExpoPushTokenAsync();
+      console.log(token);
+      return token;
+    } catch (err) {
+      alert("Error", err)
+      console.log("Error", err);
+    }
+  } */
+
+  async obtainNotificationPermission() {
+    let permission = await Permissions.getAsync(Permissions.USER_FACING_NOTIFICATIONS);
+    if (permission.status !== 'granted') {
+        permission = await Paermissions.askAsync(Permissions.USER_FACING_NOTIFICATIONS);
+        if (permission.status !== 'granted') {
+            Alert.alert('Permission not granted to show notifications');
+        }
+    }
+    return permission;
+}
+
+async presentLocalNotification(date) {
+      
+    await this.obtainNotificationPermission(); 
+        
+    Notifications.presentLocalNotificationAsync({
+      title: 'Your Reservation',
+      body: 'Reservation for '+ date + ' requested',
+      ios: {
+          sound: true
+      },
+      android: {
+          sound: true,
+          vibrate: true,
+          color: '#512DA8'
+      }
+  });
+}
+
 
   toggleModal() {
     this.setState({ showModal: !this.state.showModal });
   }
-
-  handleFeedback(dishId) {
-    this.props.postComment(dishId, this.state.author, this.state.rating, this.state.feedback);
+  
+  handleFeedback(uId) {
+    this.props.postComment(uId, this.state.author, this.state.rating, this.state.feedback);
     console.log('HandleFeedbak values: ' + JSON.stringify(this.state));    
     this.setState({ showModal: !this.state.showModal });
   }  
@@ -194,24 +199,25 @@ class Dishdetail extends Component {
       feedback: "",
       author: "",
       rating: 3      
-    });
-    
+    });    
   }
+    
 
   render() {
-    const dishId = this.props.navigation.getParam('dishId', '');
+    const uId = this.props.navigation.getParam('uId', '');
+    const joblist = this.props.navigation.getParam('item', '');
+    console.log("DIshdetail is working : " + uId + joblist);    
     return (
-      <ScrollView>
+      <ScrollView>        
         <RenderDish
-          dish={this.props.dishes.dishes[+dishId]}
-          favorite={this.props.favorites.some(el => el === dishId)}
-          onPress={() => this.markFavorite(dishId)}
-          handleFeedback={() => this.handleFeedback(dishId)}
-          toggleModal={() => this.toggleModal()}
+          joblist = {joblist}          
+          onPress={() => this.markFavorite(uId)}
+          handleFeedback={() => this.handleFeedback(uId)}
+          handlePush={() => this.handlePush()}
         />
         <RenderComments
           comments={this.props.comments.comments.filter(
-            comment => comment.dishId === dishId
+            comment => comment.uId === uId
           )}
         />
         <Modal
@@ -239,7 +245,7 @@ class Dishdetail extends Component {
               /><Text>{'\n'}</Text>
               <Button
                 onPress={() => {
-                  this.handleFeedback(dishId);                   
+                  this.handleFeedback(uId);                   
                 }}
                 color="#512DA8"
                 title="Submit"
@@ -254,9 +260,12 @@ class Dishdetail extends Component {
               />   
           </View>
         </Modal>
+        
+    
+
       </ScrollView>
     );
-  } 
+  }   
 }
 
 const styles = StyleSheet.create({
@@ -273,6 +282,13 @@ const styles = StyleSheet.create({
   },
   formItem: {
     flex: 1,
+  },
+  formButton: {
+    width:120,
+    height:50,
+    justifyContent: 'center',
+    alignItems:'center', 
+    backgroundColor:'#b642f4'
   },
   modal: {
     justifyContent: 'center',

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Animated, Easing } from 'react-native';
+import { Text, View, ScrollView, Animated, Easing } from 'react-native';
 import { Card } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
@@ -11,6 +11,8 @@ const mapStateToProps = state => {
     comments: state.comments,
     promotions: state.promotions,
     leaders: state.leaders,
+    users: state.users,
+    joblists: state.joblists
   };
 };
 
@@ -30,7 +32,7 @@ function RenderItem(props) {
       return (
         <Card
           featuredTitle={item.name}
-          featuredSubtitle={item.designation}
+          featuredSubtitle={item.type}
           image={{ uri: baseUrl + item.image }}>
           <Text style={{ margin: 10 }}>{item.description}</Text>
         </Card>
@@ -41,16 +43,16 @@ function RenderItem(props) {
   }
 }
 
-class Home extends Component {
+class JobList extends Component {
 
   constructor(props) {
     super(props);
     this.animatedValue = new Animated.Value(0);        
-}
+  }
   static navigationOptions = {
-    title: 'Home',
-  };
-
+    title: 'Job List',
+  };  
+/* 
   componentDidMount () {
     this.animate()
 }
@@ -65,10 +67,11 @@ class Home extends Component {
         easing: Easing.linear
       }
     ).start(() => this.animate());
-  }
+  } */  
+  
 
   render() {
-    const xpos1 = this.animatedValue.interpolate({
+     /* const xpos1 = this.animatedValue.interpolate({
       inputRange: [0, 1, 3, 5, 8],
       outputRange: [1200, 600, 0, -600, -1200]
     });
@@ -81,36 +84,21 @@ class Home extends Component {
     const xpos3 = this.animatedValue.interpolate({
       inputRange: [0, 3, 5, 7, 8],
       outputRange: [1200, 600, 0, -600, -1200]
-    });
+    }); */
     return (
-      <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'center'}}>
-        <Animated.View style={{ width: '100%', transform: [{ translateX: xpos1}]}}>
+      <ScrollView>                 
+        {}
+
           <RenderItem
-            item={this.props.dishes.dishes.filter(dish => dish.featured)[0]}
-            isLoading={this.props.dishes.isLoading}
-            erreMess={this.props.dishes.erreMess}
+            item={this.props.joblists.joblists.filter(joblist => joblist.featured)[0]}
+            isLoading={this.props.joblists.isLoading}
+            erreMess={this.props.joblists.erreMess}
           />
-        </Animated.View>
-        <Animated.View style={{ width: '100%', transform: [{ translateX: xpos2}]}}>
-          <RenderItem
-            item={
-              this.props.promotions.promotions.filter(promo => promo.featured)[0]
-            }
-            isLoading={this.props.promotions.isLoading}
-            erreMess={this.props.promotions.erreMess}
-          />
-        </Animated.View>
-        <Animated.View style={{ width: '100%', transform: [{ translateX: xpos3}]}}>
-          <RenderItem
-            item={this.props.leaders.leaders.filter(leader => leader.featured)[0]}
-            isLoading={this.props.leaders.isLoading}
-            erreMess={this.props.leaders.erreMess}
-          />
-        </Animated.View>
-        
-      </View>
+      </ScrollView>
+
     );
+    console.log("joblists : " + JSON.toString(this.props.joblists));
   }
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(JobList);

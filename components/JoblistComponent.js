@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import { View, FlatList, Text, ScrollView, StyleSheet,
-  Switch, AppRegistry,
-  Alert,
+  Picker,
   Modal } from 'react-native'
 import DatePicker from 'react-native-datepicker';
-import { Tile, Icon, Card, CheckBox, Input, Button,
-  SearchBar
+import { Tile, CheckBox, Button,
+  SearchBar, Slider
  } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { baseUrl } from '../shared/baseUrl'
 import { Loading } from './LoadingComponent'
 import { Flex } from '@ant-design/react-native'; 
-
 
 const mapStateToProps = state => {
   return {
@@ -19,7 +17,8 @@ const mapStateToProps = state => {
     comments: state.comments
   }
 }
-class Menu extends Component {
+
+class Joblist extends Component {
   constructor(props) {
     super(props);
 
@@ -33,13 +32,16 @@ class Menu extends Component {
       smoking: false,
       sdate: '',
       edate: '',
-      minwage: 10,
+      minwage: 11,
       modalVisible: false,     
+      distance: 0,
+      notification: {}
     };
   }
   static navigationOptions = {
     title: 'Job Listing'
   }
+
 
 toggleModal(visible) {
   this.setState({ modalVisible: visible });
@@ -58,12 +60,14 @@ resetForm() {
     cashier: true,
     helper: true,      
     smoking: false,
+    distance: 0,
     sdate: '',
     edate: '',
     minwage: 10,
     modalVisible: false,
   });
 }
+
 
   render () {
     const { navigate } = this.props.navigation
@@ -73,7 +77,10 @@ resetForm() {
           <Tile
             key={index}
             title={item.name}
-            caption={item.description}
+            captionStyle={{
+              fontSize:20
+            }}
+            caption={item.description + '\n' + item.type + '\n' + item.start + '\n' + item.price}
             featured
             onPress={() =>
               navigate('Dishdetail', { uId: item.uId, item: item })
@@ -98,97 +105,126 @@ resetForm() {
           <Modal animationType = {"slide"} transparent = {false}
               visible = {this.state.modalVisible}              
               onRequestClose = {() => { console.log("Modal has been closed.") } }>
-            <CheckBox
+          
+            <View>        
+            <Text style={{fontSize:18, margin: 10}}>Position</Text>                      
+            <CheckBox 
               left
               title='Cook'
               checked={this.state.cook}
               onPress={() => this.setState({ cook : !this.state.cook})}
             />             
-            <CheckBox
+            <CheckBox 
               left
               title='Dishwash'
               checked={this.state.dishwash}
               onPress={() => this.setState({dishwash: !this.state.dishwash})}
             />
-            <CheckBox
+            <CheckBox 
               left
               title='Serve'
               checked={this.state.serve}
               onPress={() => this.setState({serve: !this.state.serve})}
             />
-            <CheckBox
+            <CheckBox 
               left
               title='Bus'
               checked={this.state.bus}
               onPress={() => this.setState({bus: !this.state.bus})}
             />
-            <CheckBox
+
+            <CheckBox 
               left
               title='Cashier'
               checked={this.state.cashier}
               onPress={() => this.setState({cashier: !this.state.cashier})}
             />
-            <CheckBox
+            <CheckBox 
               left
               title='Helper'
               checked={this.state.helper}
               onPress={() => this.setState({helper: !this.state.helper})}
-            />
-            <Input style={styles.formInput}
-              placeholder="Min wage"
-              leftIcon={{ type: 'font-awesome', name: 'dollar' }}
-              onChangeText={(minwage) => this.setState({minwage})}
-              value={this.state.minwage}
-              containerStyle={styles.formInput}
+            />    
+            </View>        
+          <View style={styles.formRow}>
+            <Text style={styles.formLabel}>Minimum Wage</Text>
+            <Picker                
+              selectedValue={this.state.minwage}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({ minwage: itemValue })
+              }>
+              <Picker.Item label="11$" value="11" />
+              <Picker.Item label="12$" value="12" />
+              <Picker.Item label="13$" value="13" />
+              <Picker.Item label="14$" value="14" />
+              <Picker.Item label="15$" value="15" />
+              <Picker.Item label="16$" value="16" />
+            </Picker>
+          </View>
+         <View style={styles.formRow}>            
+            <Text style={styles.formLabel}>Starting date</Text>                    
+              <DatePicker                                
+                  style={styles.formInput}
+                  date={this.state.sdate}
+                  mode="date"
+                  placeholder="Starting Date"
+                  format="YYYY-MM-DD"              
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
+                  }              
+                }}            
+                onDateChange={(date) => {this.setState({sdate: date})}}
+              />                            
+            </View>
+          <View style={styles.formRow}>            
+          <Text style={styles.formLabel}>Ending date</Text>                    
+              <DatePicker              
+                  style={styles.formInput}
+                  date={this.state.edate}
+                  mode="date"
+                  placeholder="End Date"
+                  format="YYYY-MM-DD"              
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                  dateIcon: {
+                    position: 'absolute',
+                    left: 0,
+                    top: 4,
+                    marginLeft: 0
+                  },
+                  dateInput: {
+                    marginLeft: 36
+                  }              
+                }}            
+                onDateChange={(date) => {this.setState({edate: date})}}
+              />                            
+          </View>
+           <View>            
+              <Text>Distance</Text> 
+              <Slider                
+                value={this.state.distance}
+                maximumValue={100}
+                onValueChange={(distance) => this.setState({distance})}
               />
-              <DatePicker
-                style={styles.formInput}
-                date={this.state.date}
-                mode="date"
-                placeholder="Starting Date"
-                format="YYYY-MM-DD"              
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                customStyles={{
-                dateIcon: {
-                  position: 'absolute',
-                  left: 0,
-                  top: 4,
-                  marginLeft: 0
-                },
-                dateInput: {
-                  marginLeft: 36
-                }              
-              }}            
-              onDateChange={(date) => {this.setState({date: date})}}
-            />  
-            <DatePicker
-                style={styles.formInput}
-                date={this.state.date}
-                mode="date"
-                placeholder="Ending Date"
-                format="YYYY-MM-DD"              
-                confirmBtnText="Confirm"
-                cancelBtnText="Cancel"
-                customStyles={{
-                dateIcon: {
-                  position: 'absolute',
-                  left: 0,
-                  top: 4,
-                  marginLeft: 0
-                },
-                dateInput: {
-                  marginLeft: 36
-                }              
-              }}            
-              onDateChange={(date) => {this.setState({date: date})}}
-            />  
-            <Button style={styles.formButton}
-              onPress = {() => {this.toggleModal(false)}}
-              title="Search"
-              color="#512DA8"
-              accessibilityLabel="Search affirmative"
-            />                   
+              <Text>Value: {this.state.distance}</Text>
+            </View>
+                      
+          <Button style={styles.formButton}
+            onPress = {() => {this.toggleModal(false)}}          
+            title="Search"
+            color="#512DA8"
+            accessibilityLabel="Search affirmative"
+          />                   
           </Modal>       
           <Flex direction="row">  
           <Flex.Item>                   
@@ -284,9 +320,12 @@ formButton: {
     color: 'white',
     marginBottom: 20,
   },
-  searchContainer: {     
-    flexDirection: 'row'    
-  }
+  checkRow: {     
+    alignItems: 'center',
+    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'row'
+  }  
 });
 
-export default connect(mapStateToProps)(Menu)
+export default connect(mapStateToProps)(Joblist)

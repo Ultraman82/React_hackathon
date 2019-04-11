@@ -4,6 +4,13 @@ import { Input, CheckBox, Button, Icon } from 'react-native-elements';
 import { SecureStore, Permissions, ImagePicker, Asset, ImageManipulator } from 'expo';
 import { createBottomTabNavigator } from 'react-navigation';
 import { baseUrl } from '../shared/baseUrl';
+import { postUser } from '../redux/ActionCreators';
+wh = require("whirlpool");
+
+/* const mapDispatchToProps = dispatch => ({
+    postUser: (login, passwd) =>
+    dispatch(postUser(login, passwd))  
+  }); */
 
 class LoginTab extends Component {
 
@@ -53,13 +60,42 @@ class LoginTab extends Component {
     };
 
     handleLogin() {
-        console.log(JSON.stringify(this.state));
-        if (this.state.remember)
+        fetch(baseUrl + 'users')
+        .then(response => {
+            if (response.ok) {
+              return response;
+            } else {
+              var error = new Error('Error ' + response.status + ': ' + response.statusText);
+              error.response = response;
+              throw error;
+            }
+          },
+          error => {
+                var errmess = new Error(error.message);
+                throw errmess;
+          })
+        .then(response => response.json())
+        .then(res => res.filter(res => res.login === 'ggg'))
+        .then(res => {            
+            /* if (res[0] === undefined)
+                console.log("No valid user");
+            return res; */          
+            /* AsyncStorage.setItem('user', res.user);
+                this.props.navigate('Profile'); */
+            console.log("original : " + res[0].passwd);
+            console.log("whirlpool.getHash : " + wh.hash("ggg"));
+
+        })
+        .then(res => console.log("Result : "  + JSON.stringify(res[0])))
+        .catch(err => console.log("Error : " + err));
+        console.log(JSON.stringify(this.state.password));
+        
+        /* if (this.state.remember)
             SecureStore.setItemAsync('userinfo', JSON.stringify({username: this.state.username, password: this.state.password}))
                 .catch((error) => console.log('Could not save user info', error));
         else
             SecureStore.deleteItemAsync('userinfo')
-                .catch((error) => console.log('Could not delete user info', error));
+                .catch((error) => console.log('Could not delete user info', error)); */
 
     }
 
@@ -67,7 +103,7 @@ class LoginTab extends Component {
         return (
             <View style={styles.container}>
                 <Input
-                    placeholder="Username"
+                    placeholder="name"
                     leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                     onChangeText={(username) => this.setState({username})}
                     value={this.state.username}
@@ -189,10 +225,21 @@ class RegisterTab extends Component {
     };
 
     handleRegister() {
-        console.log(JSON.stringify(this.state));
-        if (this.state.remember)
-            SecureStore.setItemAsync('userinfo', JSON.stringify({username: this.state.username, password: this.state.password}))
-                .catch((error) => console.log('Could not save user info', error));
+        fetch(baseUrl + 'users', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                login: this.state.username,
+                passwd: wh.hash(this.state.password).toLowerCase()
+            })            
+        })
+        .then(response => response.json())        
+        .catch(err => console.log("Error : " + err));
+        console.log(JSON.stringify(this.state));      
+        LoginTab();                
     }
 
     render() {
