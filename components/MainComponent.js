@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Joblist from './JoblistComponent';
-import Dishdetail from './DishdetailComponent';
+import Jobdetail from './JobdetailComponent';
 import Login from './LoginComponent';
 import Apply from './ApplyComponent';
 import {
@@ -48,7 +48,7 @@ const JoblistNavigator = createStackNavigator(
         ),
       }),
     },
-    Dishdetail: { screen: Dishdetail },
+    Jobdetail: { screen: Jobdetail },
   },
   {
     initialRouteName: 'Joblist',
@@ -202,14 +202,6 @@ class Main extends Component {
         </View>
       ); 
     }
-       /* return(
-        <View
-          style={{
-            flex: 1     
-          }}>
-          <MainNavigator />
-        </View>
-      ); */
   } 
 }
 

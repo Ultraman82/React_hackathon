@@ -9,7 +9,7 @@ import { postComment } from '../redux/ActionCreators';
 import * as Animatable from 'react-native-animatable';
 import { Permissions, Notifications } from 'expo';
 
-//console.log("DIshdetail is Called : " + this.props.uId); 
+//console.log("Jobdetail is Called : " + this.props.uId); 
 const mapDispatchToProps = dispatch => ({
   postComment: (uId, author, rating, comment) =>
   dispatch(postComment(uId, author, rating, comment))  
@@ -117,7 +117,7 @@ function RenderComments(props) {
   );
 }
 
-class Dishdetail extends Component {
+class Jobdetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -146,7 +146,7 @@ class Dishdetail extends Component {
     console.log("statu + ts " + JSON.stringify(aa));
     try {
       let token = await Notifications.getExpoPushTokenAsync();
-      console.log(token);
+      console.log("token : " + token);
       return token;
     } catch (err) {
       alert("Error", err)
@@ -206,7 +206,7 @@ async presentLocalNotification(date) {
   render() {
     const uId = this.props.navigation.getParam('uId', '');
     const joblist = this.props.navigation.getParam('item', '');
-    console.log("DIshdetail is working : " + uId + joblist);    
+    console.log("Jobdetail is working : " + uId + joblist);    
     return (
       <ScrollView>        
         <RenderDish
@@ -307,4 +307,4 @@ const styles = StyleSheet.create({
     margin: 10,
   },
 });
-export default connect(mapStateToProps, mapDispatchToProps)(Dishdetail);
+export default connect(mapStateToProps, mapDispatchToProps)(Jobdetail);

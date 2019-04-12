@@ -67,9 +67,9 @@ class Apply extends Component {
         
         return(            
             <ScrollView>                
-                <View>
-                <Card featuredTitle={joblist.b_name}>
-                <Text style={styles.modalText}>{joblist.b_detail}</Text>
+                <View style={{marginTop:40}}>
+                <Card title={joblist.b_name}>
+                <Text style={styles.modalTitle}>{joblist.b_detail}</Text>
                 <Text style={styles.modalText}>Position: {joblist.position}</Text>
                 <Text style={styles.modalText}>Starting Date/Time : {joblist.fromdate}, {joblist.fromtime} </Text>
                 <Text style={styles.modalText}>Ending Date/Time : {joblist.todate}, {joblist.totime} </Text>                
@@ -79,9 +79,9 @@ class Apply extends Component {
                 <Icon
                     raised            
                     reverse
-                    name={'compass'}
+                    name={'map'}
                     type="font-awesome"
-                    color="#512DA8"   
+                    color="#512DA8"                    
                     onPress={() => this.toggleModal()}                 
                 />
                 <Icon
@@ -96,11 +96,11 @@ class Apply extends Component {
                     reverse
                     name={'envelope'}
                     type="font-awesome"
-                    color="#512DA8"                    
+                    color="#b642f4"                    
                 />          
                 </View>                
                 <Button style={styles.formButton} 
-                    color="#512DA8"
+//                    color="#512DA8"
                     title="Apply"
                 />                
                 </Card>                
@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       flex: 1,
       flexDirection: 'row',
-      margin: 20,
+      margin: 60,
     },
     formLabel: {
       fontSize: 18,
@@ -162,12 +162,13 @@ const styles = StyleSheet.create({
     formItem: {
       flex: 1,
     },
-    formButton: {
-      width:120,
-      height:50,
-      justifyContent: 'center',
-      alignItems:'center', 
-      backgroundColor:'#b642f4'
+    formButton: {        
+    position: 'absolute',
+    bottom:0,
+    width:120,
+    height:50,      
+    alignItems:'center', 
+    backgroundColor:'#b642f4'
     },
     modal: {
       justifyContent: 'center',
@@ -175,15 +176,18 @@ const styles = StyleSheet.create({
     },
     modalTitle: {
       fontSize: 24,
-      fontWeight: 'bold',
-      backgroundColor: '#512DA8',
+      fontWeight: 'bold',      
       textAlign: 'center',
-      color: 'white',
+      color: '#512DA8',
       marginBottom: 20,
     },
     modalText: {
       fontSize: 18,
       margin: 10,
+    },
+    container: {
+    justifyContent: 'center',
+    margin: 20,
     },
     map: {
         position: 'absolute',

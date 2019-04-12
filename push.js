@@ -20,8 +20,7 @@ curl -H "Content-Type: application/json" -X POST "https://exp.host/--/api/v2/pus
       "b_email": "ewe@ffd.com",
       "b_detail": "Lets Work Hard!!!",
       "position": [
-          "serve",
-          "cashier"
+          "dancer"
         ]
     },
     "title": "You got a new job offer!",
@@ -32,10 +31,6 @@ curl -H "Content-Type: application/json" -X POST "https://exp.host/--/api/v2/pus
 
 cellphone: "ExponentPushToken[1JJC4_JyVEDCdQAJRHukH2]",
 laptop: "ExponentPushToken[LXAK5uGzs9py4meqrJBMmC]",
-
-
-
-
 
 
 
