@@ -1,5 +1,5 @@
 curl -H "Content-Type: application/json" -X POST "https://exp.host/--/api/v2/push/send" -d '{
-"to": "ExponentPushToken[LXAK5uGzs9py4meqrJBMmC]",
+"to": "ExponentPushToken[1JJC4_JyVEDCdQAJRHukH2]",
   "data": {
       "id": 1,
       "title": "Serving and casher is wanted.",
@@ -14,7 +14,7 @@ curl -H "Content-Type: application/json" -X POST "https://exp.host/--/api/v2/pus
       "b_address_2": "asd",
       "b_city": "asd",
       "b_state": "CA",
-      "b_postcode": "asd"
+      "b_postcode": "asd"x
     },
       "b_phone": "614-615-4082",
       "b_email": "ewe@ffd.com",

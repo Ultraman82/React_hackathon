@@ -1,16 +1,12 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Text, ScrollView, Image } from 'react-native';
+import { View, StyleSheet, Text, Alert, ScrollView, Image } from 'react-native';
 import { Input, CheckBox, Button, Icon } from 'react-native-elements';
 import { SecureStore, Permissions, ImagePicker, Asset, ImageManipulator } from 'expo';
 import { createBottomTabNavigator } from 'react-navigation';
+import Joblist from './JoblistComponent';
 import { baseUrl } from '../shared/baseUrl';
 import { postUser } from '../redux/ActionCreators';
 wh = require("whirlpool");
-
-/* const mapDispatchToProps = dispatch => ({
-    postUser: (login, passwd) =>
-    dispatch(postUser(login, passwd))  
-  }); */
 
 class LoginTab extends Component {
 
@@ -58,6 +54,13 @@ class LoginTab extends Component {
             />
           ) 
     };
+    resetForm() {
+        this.setState({            
+            username: '',
+            password: '',
+            remember: false
+        });
+      }
 
     handleLogin() {
         fetch(baseUrl + 'users')
@@ -75,29 +78,46 @@ class LoginTab extends Component {
                 throw errmess;
           })
         .then(response => response.json())
-        .then(res => res.filter(res => res.login === 'ggg'))
+        .then(res => res.filter(res => res.login === this.state.username))
         .then(res => {            
-            /* if (res[0] === undefined)
-                console.log("No valid user");
-            return res; */          
-            /* AsyncStorage.setItem('user', res.user);
-                this.props.navigate('Profile'); */
-            console.log("original : " + res[0].passwd);
-            console.log("whirlpool.getHash : " + wh.hash("ggg"));
+            if(res[0].passwd === wh.hash(this.state.password).toLowerCase())
+            {
+                console.log("matched");
+                this.props.navigation.navigate('Joblist')
+            }
+                
+            else
+            {
+                Alert.alert(
+                    "Wrong Password",
+                    "Do it again",
+                    [
+                    {text: 'Cancel'},
+                    {text: 'OK', onPress: () => {                      
+                      this.resetForm();}
+                    }
+                    ],
+                    { cancelable: false }
+                  );
+            }
+                
+            /* console.log("original : " + res[0].passwd);
+            console.log("whirlpool.getHash : " + wh.hash("asd")); */
 
-        })
-        .then(res => console.log("Result : "  + JSON.stringify(res[0])))
-        .catch(err => console.log("Error : " + err));
-        console.log(JSON.stringify(this.state.password));
-        
-        /* if (this.state.remember)
+        })        
+        .catch(err => console.log("Error : " + err));                
+        if (this.state.remember)
             SecureStore.setItemAsync('userinfo', JSON.stringify({username: this.state.username, password: this.state.password}))
                 .catch((error) => console.log('Could not save user info', error));
         else
             SecureStore.deleteItemAsync('userinfo')
-                .catch((error) => console.log('Could not delete user info', error)); */
-
+                .catch((error) => console.log('Could not delete user info', error));
     }
+    
+        
+      
+
+
 
     render() {
         return (
@@ -106,12 +126,14 @@ class LoginTab extends Component {
                     placeholder="name"
                     leftIcon={{ type: 'font-awesome', name: 'user-o' }}
                     onChangeText={(username) => this.setState({username})}
+                    autoCapitalize = 'none'
                     value={this.state.username}
                     containerStyle={styles.formInput}
                     />
                 <Input
                     placeholder="Password"
                     leftIcon={{ type: 'font-awesome', name: 'key' }}
+                    autoCapitalize = 'none'
                     onChangeText={(password) => this.setState({password})}
                     value={this.state.password}
                     containerStyle={styles.formInput}

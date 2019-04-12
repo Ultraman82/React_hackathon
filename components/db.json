@@ -142,54 +142,62 @@
   ],
   "users": [
     {
-        "uId" : "cc",
-        "password": "11",
-        "address" : "6600 Dumbarton Cir",
-      "id": 0,
-      "name": "00 Edgar Jeong",
-      "email": "",
-      "image": "images/serving.png",
-      "designation": "The Hornian",
-      "telNum": "CEO",
-      "featured": true,
-      "description": "CC : I am super sexy.",
-        "bizOwned": false,
-        "IDverified": true,
-        "rating" : [3, 4, 5]
+        "id": 1,
+        "login": "asd",
+        "passwd": "822a19edb23fd5f1d01b9e547bf3a8e15b13b7569d5f42c382be59a1ba4244a5bf71208935f1512b929c14dd218bc2312fa63bce11617f35202018b523e63823",
+        "name": "asd",
+        "address": {
+            "address_1": "asd",
+            "address_2": "asd",
+            "city": "asd",
+            "state": "CA",
+            "postcode": "asd"
+        },
+        "phone": "asd",
+        "email": "asd",
+        "employee": false,
+        "b_name": "asd",
+        "b_address": {
+            "b_address_1": "asd",
+            "b_address_2": "asd",
+            "b_city": "asd",
+            "b_state": "CA",
+            "b_postcode": "asd"
+        },
+        "b_phone": "asd",
+        "b_email": "asd",
+        "b_description": "asd",
+        "mobile_noti": true
     },
     {
-        "uId" : "aa",
-        "password": "11",
-        "address" : "6600 Dumbarton Cir",
-      "id": 1,
-      "name": "AA Edgar Jeong",
-      "email": "",
-      "image": "images/alberto.png",
-      "designation": "Chief Epicurious Officer",
-      "telNum": "CEO",
-      "featured": true,
-      "description": "AA: I am very sexy.",
-        "bizOwned": false,
-        "IDverified": true,
-        "rating" : [3, 4, 5]
-    },
-    {
-        "uId" : "bb",
-        "password": "11",
-        "address" : "6600 Dumbarton Cir",
-      "id": 2,
-      "name": "BB Edgar Jeong",
-      "email": "",
-      "image": "images/alberto.png",
-      "designation": "Chief Epicurious Officer",
-      "telNum": "CEO",
-      "featured": true,
-      "description": "BB : I am Extremely sexy.",
-        "bizOwned": false,
-        "IDverified": true,
-        "rating" : [3, 4, 5]
+        "id": 2,
+        "login": "ffff",
+        "passwd": "257e8bfd20e8e9d75f41f1445e294f2ba050c513cf0b326e0ddc886d3352bfa8af85ee8fdc422c454ba235c4b56990c2773f74197368000bfdcd3c5caba70fed",
+        "name": "ffff",
+        "address": {
+            "address_1": "ffff",
+            "address_2": "ffff",
+            "city": "ffff",
+            "state": "CA",
+            "postcode": "ffff"
+        },
+        "phone": "ffff",
+        "email": "ffff",
+        "employee": false,
+        "b_name": "ffff",
+        "b_address": {
+            "b_address_1": "ffff",
+            "b_address_2": "ffff",
+            "b_city": "ffff",
+            "b_state": "CA",
+            "b_postcode": "ffff"
+        },
+        "b_phone": "ffff",
+        "b_email": "ffff",
+        "b_description": "ffff",
+        "mobile_noti": false
     }
-  ],
+],
   "feedback": [
     {
       "firstname": "fdas",

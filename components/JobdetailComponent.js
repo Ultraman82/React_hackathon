@@ -210,10 +210,10 @@ async presentLocalNotification(date) {
     return (
       <ScrollView>        
         <RenderDish
-          joblist = {joblist}          
-          onPress={() => this.markFavorite(uId)}
+          joblist = {joblist}                    
           handleFeedback={() => this.handleFeedback(uId)}
           handlePush={() => this.handlePush()}
+          toggleModal={() => this.toggleModal()}
         />
         <RenderComments
           comments={this.props.comments.comments.filter(

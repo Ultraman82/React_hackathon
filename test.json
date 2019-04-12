@@ -1,0 +1,408 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "login": "tester2",
+            "passwd": "a71409d1a6ab9f49fdc7dfc898a6da52c8d4b97cb36d2e9ec13226fd988f652287bcb01effa95fafd0299463685edacd9e964d186944edeeb2d7c1279fbb63c9",
+            "name": "Brandon Han",
+            "address": {
+                "address_1": "6450 Lincoln Ave Apt 108",
+                "address_2": "",
+                "city": "Buena Park",
+                "state": "CA",
+                "postcode": "90620"
+            },
+            "phone": "7143084090",
+            "email": "hanbrandon@hotmail.com",
+            "employee": false,
+            "b_name": "Tasty Pot",
+            "b_address": {
+                "b_address_1": "34909 Newark Blvd",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "94560"
+            },
+            "b_phone": "510-797-8889",
+            "b_email": "",
+            "b_description": "",
+            "mobile_noti": true
+        },
+        {
+            "id": 2,
+            "login": "tester1",
+            "passwd": "a968339370ac26b581ff2198b31d93e00c5840f8cbdeb1c2cb604a57eda10b40e87f7e71e9f627beea472f4a587a43ab71c63c15795b09b36366aff4e08ebf55",
+            "name": "Bob Ross",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "123-456-7890",
+            "email": "tester1@tester.com",
+            "employee": true,
+            "position": [
+                "dishwash",
+                "serve",
+                "bus",
+                "cashier"
+            ],
+            "description": "I can work anytime! I am expert at serving!",
+            "mobile_noti": true
+        },
+        {
+            "id": 3,
+            "login": "tester3",
+            "passwd": "741c6116ce353c446a2da57e7ff539534b30cc54eebdbac026cc01d1f5ea3b63f98a57459799296a3811416abdeb48934315a537c9343154c0c16425cfdfd792",
+            "name": "John Cena",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "098-765-4321",
+            "email": "tester2@tester.com",
+            "employee": true,
+            "position": [
+                "serve",
+                "bus"
+            ],
+            "description": "I am very strong and got skills on how to make customers happy!",
+            "mobile_noti": true
+        },
+        {
+            "id": 4,
+            "login": "tester4",
+            "passwd": "435a6c3562c6fc53a568d84dfc615c62e3ccc594800e9042d4ba3882ce9fb12c2fb6722d08bfd6db61bace99cdd62b6e9895f7828069c40a92d6658f7c46f606",
+            "name": "Expert Worker",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "111-222-3333",
+            "email": "tester4@tester.com",
+            "employee": true,
+            "position": [
+                "cook",
+                "helper"
+            ],
+            "description": "I am expert at cooking! I can cook Korean food, Japanese food, and Chinese food!",
+            "mobile_noti": true
+        },
+        {
+            "id": 5,
+            "login": "tester5",
+            "passwd": "91bd7fd12e2028dcd64fc8dda19483f53b2dcd6c68bfba5449c65559a6c5d4edefb9b6f77a3dcc9346189a4bde88bbc2f7e03892a47b3dc0b03e734f6a4d3d12",
+            "name": "Parry Hotter",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "444-555-6666",
+            "email": "tester5@tester.com",
+            "employee": true,
+            "position": [
+                "cook",
+                "dishwash",
+                "serve",
+                "bus",
+                "cashier",
+                "helper"
+            ],
+            "description": "I can cover all positions! I have 7 years of work experience!",
+            "mobile_noti": true
+        },
+        {
+            "id": 6,
+            "login": "tester6",
+            "passwd": "ada42649a03950ddf68674493846f5ac094cd71b8458160c6187f5414abe442c6a0d9a5f94c306997f7554e1c1fe895a35f87823090fdc82bd5852711a8f0d11",
+            "name": "Jack Sparrow",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "777-888-9999",
+            "email": "tester6@tester.com",
+            "employee": true,
+            "position": [
+                "cook",
+                "dishwash",
+                "helper"
+            ],
+            "description": "I am kitchen work expert! You won't regret working with me!",
+            "mobile_noti": true
+        },
+        {
+            "id": 7,
+            "login": "tester7",
+            "passwd": "6f3c5cd6134954518574c14e5fca6a67d2a3a0d3e573d9d6383fadeed248cd62db2042180e1ad92a643857dd4cba1c82529593d99bb312474a45637f38d60ba8",
+            "name": "Eddie Yang",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "000-000-0000",
+            "email": "tester7@tester.com",
+            "employee": true,
+            "position": [
+                "dishwash",
+                "serve",
+                "bus",
+                "cashier"
+            ],
+            "description": "I am very diligent, and I work as if the restaurant is my own.",
+            "mobile_noti": true
+        },
+        {
+            "id": 8,
+            "login": "tester8",
+            "passwd": "568701a78c07cf7c4b73db99e95b5327a989f04d3cff19bbfac1221fe6e8ad63f4380de9962ead672470aacbb9a3434ccae5aa7395452a993adef8b7bd547a2b",
+            "name": "Brandon Han",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "111-111-1111",
+            "email": "tester8@tester.com",
+            "employee": true,
+            "position": [
+                "dishwash",
+                "serve",
+                "bus",
+                "cashier"
+            ],
+            "description": "Looking for Saturday one-day job. I have experience as server and cashier!",
+            "mobile_noti": true
+        },
+        {
+            "id": 9,
+            "login": "admin",
+            "passwd": "6a4e012bd9583858a5a6fa15f58bd86a25af266d3a4344f1ec2018b778f29ba83be86eb45e6dc204e11276f4a99eff4e2144fbe15e756c2c88e999649aae7d94",
+            "name": "admin",
+            "address": {
+                "address_1": "6300 Dumbarton Cir",
+                "address_2": "",
+                "city": "Fremont",
+                "state": "CA",
+                "postcode": "94555"
+            },
+            "phone": "999-999-9999",
+            "email": "admin@tester.com",
+            "employee": false,
+            "b_name": "42 Silicon Valley",
+            "b_address": {
+                "b_address_1": "6300 Dumbarton Cir",
+                "b_address_2": "",
+                "b_city": "Fremont",
+                "b_state": "CA",
+                "b_postcode": "94555"
+            },
+            "b_phone": "510-858-2249",
+            "b_email": "",
+            "b_description": "42 Silicon Valley is an innovative engineering college in the San Francisco Bay Area. As the leading college for software engineering, coding, and programming, we\u2019re disrupting engineering education and tech talent pipelines in the Bay. Think tech is just for nerds? Think again.\r\nWe\u2019re a non-profit organization (NPO) based in California.",
+            "mobile_noti": true
+        }
+    ],
+    "counters": {
+        "uid": 9,
+        "jlid": 7
+    },
+    "listings": [
+        {
+            "id": 1,
+            "login": "tester2",
+            "title": "We are hiring server and dishwasher!",
+            "wage": "16",
+            "fromdate": "2019-04-14",
+            "todate": "2019-04-15",
+            "fromtime": "09:00",
+            "totime": "15:00",
+            "b_name": "Tasty Pot",
+            "b_address": {
+                "b_address_1": "34909 Newark Blvd",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "94560"
+            },
+            "b_phone": "510-797-8889",
+            "b_email": "",
+            "b_detail": "We need a server and dishwasher immediately. ",
+            "position": [
+                "dishwash",
+                "serve"
+            ]
+        },
+        {
+            "id": 2,
+            "login": "tester2",
+            "title": "Need Cashier!!!",
+            "wage": "15.50",
+            "fromdate": "2019-04-20",
+            "todate": "2019-04-21",
+            "fromtime": "09:00",
+            "totime": "14:00",
+            "b_name": "Safeway",
+            "b_address": {
+                "b_address_1": "5877 Jarvis Ave ",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "94560"
+            },
+            "b_phone": "510-713-3180",
+            "b_email": "",
+            "b_detail": "We need experienced cashier on next weekend! ",
+            "position": [
+                "cashier"
+            ]
+        },
+        {
+            "id": 3,
+            "login": "tester2",
+            "title": "Need a busboy!! Very busy Restaurant.  ",
+            "wage": "16",
+            "fromdate": "2019-04-15",
+            "todate": "2019-04-19",
+            "fromtime": "12:00",
+            "totime": "21:00",
+            "b_name": "Pho Nguyen Vu Restaurant",
+            "b_address": {
+                "b_address_1": "5729 Jarvis Ave",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "94560"
+            },
+            "b_phone": "510-796-4300",
+            "b_email": "",
+            "b_detail": "We need a busboy. \r\nNo experience needed.\r\n",
+            "position": [
+                "bus"
+            ]
+        },
+        {
+            "id": 4,
+            "login": "tester2",
+            "title": "We are hiring kitchen helper",
+            "wage": "20",
+            "fromdate": "2019-04-15",
+            "todate": "2019-04-19",
+            "fromtime": "12:00",
+            "totime": "21:00",
+            "b_name": "Harumi Sushi & Tofu House",
+            "b_address": {
+                "b_address_1": "5790 Jarvis Ave",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "94560"
+            },
+            "b_phone": "510-796-4222",
+            "b_email": "",
+            "b_detail": "Experience kitchen helper in food\/restaurant industry preferred but not required",
+            "position": [
+                "bus"
+            ]
+        },
+        {
+            "id": 5,
+            "login": "tester2",
+            "title": "cashier\/food runner\/kitchen helper",
+            "wage": "16",
+            "fromdate": "2019-04-21",
+            "todate": "2019-08-31",
+            "fromtime": "09:00",
+            "totime": "23:00",
+            "b_name": "Tasty Pot",
+            "b_address": {
+                "b_address_1": "35233A Newark Blvd",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "35233"
+            },
+            "b_phone": "510-797-3500",
+            "b_email": "",
+            "b_detail": "Experience cashier or kitchen helper in food\/restaurant industry preferred but not required\r\n\r\nJob Types: Full-time, Part-time",
+            "position": [
+                "serve",
+                "bus",
+                "cashier",
+                "helper"
+            ]
+        },
+        {
+            "id": 6,
+            "login": "tester2",
+            "title": "Dishwasher full-tiime",
+            "wage": "15",
+            "fromdate": "2019-04-21",
+            "todate": "2019-08-31",
+            "fromtime": "09:00",
+            "totime": "23:00",
+            "b_name": "Rice and Spoon Vietnamese Cuisine",
+            "b_address": {
+                "b_address_1": "7060 Jarvis Ave",
+                "b_address_2": "",
+                "b_city": "Newark",
+                "b_state": "CA",
+                "b_postcode": "35233"
+            },
+            "b_phone": "510-742-3915",
+            "b_email": "",
+            "b_detail": "Assisted Living Community seeks a motivated and reliable Kitchen helper\/Dishwasher. This is a full-time position. He\/She will help with receiving, storing and dating all purchases upon delivery. Maintain a safe, clean working environment while washing dishes, mopping floors, vacuuming and removing trash.\r\n\r\nJob requirements:\r\n*Must be at least 18 years of age.\r\n*Strong written, verbal and interpersonal communication skills in English\r\n*Ability to clear DOJ fingerprinting requirements\r\n*Candidate MUST be able to work flexible shift",
+            "position": [
+                "serve",
+                "bus",
+                "cashier",
+                "helper"
+            ]
+        },
+        {
+            "id": 7,
+            "login": "admin",
+            "title": "Looking for Kitchen Helper at Cantina!",
+            "wage": "15",
+            "fromdate": "2019-04-13",
+            "todate": "2019-04-11",
+            "fromtime": "11:00",
+            "totime": "14:30",
+            "b_name": "42 Silicon Valley",
+            "b_address": {
+                "b_address_1": "6300 Dumbarton Cir",
+                "b_address_2": "",
+                "b_city": "Fremont",
+                "b_state": "CA",
+                "b_postcode": "94555"
+            },
+            "b_phone": "510-858-2249",
+            "b_email": "",
+            "b_detail": "Cantina is looking for helper!",
+            "position": [
+                "dishwash",
+                "cashier",
+                "helper"
+            ]
+        }
+    ]
+}

@@ -72,16 +72,16 @@ export const addJoblists = (joblists) => ({
 
 
 
-export const postFavorite = (dishId)  => (dispatch) => {
+export const postFavorite = (uId)  => (dispatch) => {
 
     setTimeout(() => {
-        dispatch(addFavorite(dishId));
+        dispatch(addFavorite(uId));
     }, 2000);
 };
 
-export const addFavorite = (dishId) => ({
+export const addFavorite = (uId) => ({
     type: ActionTypes.ADD_FAVORITE,
-    payload: dishId
+    payload: uId
 });
 
 export const addComment = (comment) => ({
@@ -89,10 +89,10 @@ export const addComment = (comment) => ({
     payload: comment,    
 });
 
-export const postComment = (dishId, author, rating, comment) => (dispatch) => {
+export const postComment = (uId, author, rating, comment) => (dispatch) => {
 
     const newFeedback = {
-        dishId: dishId,
+        uId: uId,
         author: author,        
         comment: comment,
         rating: rating,
@@ -131,7 +131,7 @@ export const postComment = (dishId, author, rating, comment) => (dispatch) => {
 };
 
 
-export const deleteFavorite = (dishId) => ({
+export const deleteFavorite = (uId) => ({
     type : ActionTypes.DELETE_FAVORITE,
-    payload : dishId
+    payload : uId
 })
