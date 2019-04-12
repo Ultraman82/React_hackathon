@@ -83,7 +83,7 @@ resetForm() {
             caption={item.description + '\n' + item.type + '\n' + item.start + '\n' + item.price}
             featured
             onPress={() =>
-              navigate('Dishdetail', { uId: item.uId, item: item })
+              navigate('Jobdetail', { uId: item.uId, item: item })
             }
             imageSrc={{ uri: baseUrl + item.image }}
           />
